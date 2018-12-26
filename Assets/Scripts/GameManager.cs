@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 	[SerializeField]
@@ -6,7 +7,8 @@ public class GameManager : MonoBehaviour {
 
 	private Animator animator;
 	private JujubeBoard jujubeBoard;
-	private GameObject gameOverText;
+	private AIPlayer aIPlayer;
+	private Text gameOverText;
 
 	private GameManagerTurn gameManagerTurn;
 	private PlayerTurn playerTurn;
@@ -15,7 +17,9 @@ public class GameManager : MonoBehaviour {
 	void Awake() {
 		animator = GetComponent<Animator>();
 		jujubeBoard = GameObject.FindWithTag("JujubeBoard").GetComponent<JujubeBoard>();
-		gameOverText = GameObject.FindWithTag("GameOver");
+		aIPlayer = GameObject.FindWithTag("AIPlayer").GetComponent<AIPlayer>();
+		aIPlayer.JujubeBoard = jujubeBoard;
+		gameOverText = GameObject.FindWithTag("GameOverText").GetComponent<Text>();
 	}
 
 	void Start() {
@@ -24,13 +28,12 @@ public class GameManager : MonoBehaviour {
 		playerTurn = animator.GetBehaviour<PlayerTurn>();
 		playerTurn.jujubeBoard = jujubeBoard;
 		aITurn = animator.GetBehaviour<AITurn>();
-		aITurn.aIPlayer = GameObject.FindWithTag("AIPlayer").GetComponent<AIPlayer>();
-		aITurn.aIPlayer.JujubeBoard = jujubeBoard;
+		aITurn.aIPlayer = aIPlayer;
 	}
 
 	internal void OnGameManagerTurnEnter() {
 		if (jujubeBoard.CheckGameOver()) {
-			gameOverText.SetActive(true);
+			gameOverText.enabled = true;
 			animator.SetTrigger("GameOverTrigger");
 		} else {
 			int nextPlayerID = animator.GetInteger("NextPlayerID");
