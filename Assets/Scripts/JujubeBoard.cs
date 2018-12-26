@@ -1,28 +1,33 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class JujubeBoard : MonoBehaviour {
-	private CanvasGroup[] allCanvasGroups = null; // TOTHINK: Any way to encapsulate this var from me?
+	[SerializeField]
+	private GameObject groupPrefab;
 
-	internal CanvasGroup[] AllCanvasGroups {
-		get {
-			if (allCanvasGroups == null) {
-				allCanvasGroups = GetComponentsInChildren<CanvasGroup>();
-			}
-			return allCanvasGroups;
-		}
-	}
+	private int[] maxCountForGroups = { 3, 5, 7 }; // According to game basic rules
+
+	private List<CanvasGroup> allCanvasGroups = new List<CanvasGroup>();
 
 	internal void MakeAllGroupsInteractable() {
-		foreach (CanvasGroup canvasGroup in AllCanvasGroups) {
+		foreach (CanvasGroup canvasGroup in allCanvasGroups) {
 			canvasGroup.interactable = true;
 		}
 	}
 
 	internal void MakeOtherGroupsNotInteractable(CanvasGroup theRemainingGroup) {
-		foreach (CanvasGroup canvasGroup in AllCanvasGroups) {
+		foreach (CanvasGroup canvasGroup in allCanvasGroups) {
 			if (canvasGroup != theRemainingGroup) {
 				canvasGroup.interactable = false;
 			}
+		}
+	}
+
+	void Awake() {
+		foreach (int max in maxCountForGroups) {
+			GameObject child = Instantiate(groupPrefab, transform);
+			allCanvasGroups.Add(child.GetComponent<CanvasGroup>());
+			child.GetComponent<JujubeGroup>().MaxForGroup = max;
 		}
 	}
 }
