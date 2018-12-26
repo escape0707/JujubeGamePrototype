@@ -18,6 +18,12 @@ public class JujubeGroup : MonoBehaviour {
 		}
 	}
 
+	internal bool IsEmpty {
+		get {
+			return jujubeCount == 0;
+		}
+	}
+
 	internal void PickOne() {
 		if (jujubeCount-- == previousCount) {
 			jujubeBoard.MakeOtherGroupsNotInteractable(canvasGroup);
