@@ -8,7 +8,7 @@ public class JujubeGroup : MonoBehaviour {
 
 	private int maxForGroup;
 	private int jujubeCount;
-	private int previousCount; // TODO!! Not maintained.
+	private int previousCount;
 	private JujubeBoard jujubeBoard;
 	private CanvasGroup canvasGroup;
 	private List<JujubeToggle> jujubes = new List<JujubeToggle>();

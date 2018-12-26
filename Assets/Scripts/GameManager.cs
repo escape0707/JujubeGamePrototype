@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour {
 		} else {
 			int nextPlayerID = animator.GetInteger("NextPlayerID");
 			nextPlayerID = (nextPlayerID + 1) % PlayersCount;
+			animator.SetInteger("NextPlayerID", nextPlayerID);
 			animator.SetTrigger("NextPlayerTrigger");
 		}
 	}

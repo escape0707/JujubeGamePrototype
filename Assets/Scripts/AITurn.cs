@@ -5,6 +5,7 @@ public class AITurn : StateMachineBehaviour {
 
 	override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
 		aIPlayer.OnAITurnEnter();
+		animator.SetTrigger("AIMovedTrigger");
 	}
 
 	override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {

@@ -11,9 +11,14 @@ public class AIPlayer : MonoBehaviour {
 		}
 	}
 
-	internal void OnAITurnEnter() { }
+	internal void OnAITurnEnter() {
+		Debug.Log("AITurnEnter");
+		// MakeAMove();
+	}
 
-	internal void OnAITurnExit() { }
+	internal void OnAITurnExit() {
+		Debug.Log("AITurnExit");
+	}
 
 	private void FindAnswer(int first, int second, int third) { // 'c' for "counts".
 		int[] c = { first, second, third };
