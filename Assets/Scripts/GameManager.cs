@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour {
 
 	private Animator animator;
 	private GameManagerTurn gameManagerTurn;
+	private PlayerTurn playerTurn;
 
 	void Awake() {
 		animator = GetComponent<Animator>();
@@ -17,11 +18,16 @@ public class GameManager : MonoBehaviour {
 	void Start() {
 		gameManagerTurn = animator.GetBehaviour<GameManagerTurn>();
 		gameManagerTurn.gameManager = this;
+		playerTurn = animator.GetBehaviour<PlayerTurn>();
+		playerTurn.jujubeBoard = jujubeBoard;
 	}
 
 	public void Validate() {
 		if (jujubeBoard.CheckGameOver()) {
 			gameOverText.SetActive(true);
+			animator.SetTrigger("GameOver");
+		} else {
+			animator.SetTrigger("PlayerTurn");
 		}
 	}
 }

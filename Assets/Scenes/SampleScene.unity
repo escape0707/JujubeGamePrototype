@@ -188,7 +188,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 149922707}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1427174821}
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: ConfirmPick
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &149922707
@@ -629,7 +640,7 @@ Prefab:
     - target: {fileID: 114483154820474406, guid: 6a1e52ec78e387f4db46e6549f172766,
         type: 2}
       propertyPath: maxCountForGroups.Array.size
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 224588584509491938, guid: 6a1e52ec78e387f4db46e6549f172766,
         type: 2}
@@ -720,21 +731,6 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114483154820474406, guid: 6a1e52ec78e387f4db46e6549f172766,
-        type: 2}
-      propertyPath: maxCountForGroups.Array.data[0]
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114483154820474406, guid: 6a1e52ec78e387f4db46e6549f172766,
-        type: 2}
-      propertyPath: maxCountForGroups.Array.data[1]
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114483154820474406, guid: 6a1e52ec78e387f4db46e6549f172766,
-        type: 2}
-      propertyPath: maxCountForGroups.Array.data[2]
-      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a1e52ec78e387f4db46e6549f172766, type: 2}
