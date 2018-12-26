@@ -26,6 +26,13 @@ public class JujubeBoard : MonoBehaviour {
 		return true;
 	}
 
+	internal void OnPlayerTurnEnter() {
+		MakeAllGroupsInteractable();
+		foreach (var childScript in allJujubeGroups) {
+			childScript.NewTurn();
+		}
+	}
+
 	internal void MakeOtherGroupsNotInteractable(CanvasGroup theRemainingGroup) {
 		foreach (CanvasGroup canvasGroup in allCanvasGroups) {
 			if (canvasGroup != theRemainingGroup) {
