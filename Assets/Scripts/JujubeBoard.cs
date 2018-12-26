@@ -9,11 +9,11 @@ public class JujubeBoard : MonoBehaviour {
 	private int[] maxCountForGroups = { 3, 5, 7 }; // According to game basic rules
 
 	private List<CanvasGroup> allCanvasGroups = new List<CanvasGroup>();
-	private List<JujubeGroup> allJujubeGroups = new List<JujubeGroup>();
+  private List<JujubeGroup> allJujubeGroups = new List<JujubeGroup>();
 
-	internal void MakeAllGroupsInteractable() {
+	internal void SetAllGroupsInteractable(bool value) {
 		foreach (CanvasGroup canvasGroup in allCanvasGroups) {
-			canvasGroup.interactable = true;
+			canvasGroup.interactable = value;
 		}
 	}
 
@@ -27,11 +27,19 @@ public class JujubeBoard : MonoBehaviour {
 	}
 
 	internal void OnPlayerTurnEnter() {
-		MakeAllGroupsInteractable();
+		SetAllGroupsInteractable(true);
 		foreach (var childScript in allJujubeGroups) {
-			childScript.NewTurn();
+			childScript.OnNewTurn();
 		}
 	}
+
+  internal void OnPlayerTurnExit()
+  {
+		SetAllGroupsInteractable(false);
+		foreach (var childScript in allJujubeGroups) {
+			childScript.OnEndTurn();
+		}
+  }
 
 	internal void MakeOtherGroupsNotInteractable(CanvasGroup theRemainingGroup) {
 		foreach (CanvasGroup canvasGroup in allCanvasGroups) {

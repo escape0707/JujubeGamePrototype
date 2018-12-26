@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 
 public class JujubeToggle : MonoBehaviour {
+	internal static bool isInternalToggle = false; // TODO: What a piece of ...
 	private Toggle toggle;
 	private JujubeGroup group;
 
@@ -10,6 +11,7 @@ public class JujubeToggle : MonoBehaviour {
 			return toggle.isOn;
 		}
 		set {
+			isInternalToggle = value != toggle.isOn;
 			toggle.isOn = value;
 		}
 	}
@@ -24,6 +26,11 @@ public class JujubeToggle : MonoBehaviour {
 	}
 
 	void ToggleValueChanged(Toggle changedToggle) {
+		if (isInternalToggle) {
+			isInternalToggle = false;
+			return;
+		}
+
 		if (changedToggle.isOn) {
 			group.UnpickOne();
 		} else {

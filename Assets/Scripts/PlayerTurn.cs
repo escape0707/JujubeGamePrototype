@@ -6,4 +6,8 @@ public class PlayerTurn : StateMachineBehaviour {
 	override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
 		jujubeBoard.OnPlayerTurnEnter();
 	}
+
+	override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
+		jujubeBoard.OnPlayerTurnExit();
+	}
 }

@@ -26,13 +26,21 @@ public class JujubeGroup : MonoBehaviour {
 		}
 	}
 
-	internal void NewTurn() {
-		previousCount = jujubeCount;
+	private void CleanUpJujubes() {
 		for (int count = 0; count < maxForGroup; ++count) {
-			bool isRemained = count < previousCount;
+			bool isRemained = count < jujubeCount;
 			jujubes[count].isOn = isRemained;
 			jujubes[count].gameObject.SetActive(isRemained);
 		}
+	}
+
+	internal void OnNewTurn() {
+		previousCount = jujubeCount;
+		CleanUpJujubes(); // Interesting.. Maybe not necessary but a rather safe thing to do?
+	}
+
+	internal void OnEndTurn() {
+		CleanUpJujubes(); // Interesting.. This is the earliest place were we should do it.
 	}
 
 	internal void PickOne() {
@@ -45,7 +53,7 @@ public class JujubeGroup : MonoBehaviour {
 
 	internal void UnpickOne() {
 		if (++jujubeCount == previousCount) {
-			jujubeBoard.MakeAllGroupsInteractable();
+			jujubeBoard.SetAllGroupsInteractable(true);
 		}
 
 		Assert.IsTrue(jujubeCount <= maxForGroup, "Jujube count for this group exceeded its max");
