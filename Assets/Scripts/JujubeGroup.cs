@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Assertions;
 
 public class JujubeGroup : MonoBehaviour {
@@ -9,26 +6,35 @@ public class JujubeGroup : MonoBehaviour {
 	private GameObject JujubePrefab;
 
 	[SerializeField]
-	private int maxJujubeCountForGroup;
+	private int maxForGroup; // TODO
 	private int jujubeCount;
 	private int previousCount; // TODO!! Not maintained.
+	private JujubeBoard jujubeBoard;
+	private CanvasGroup canvasGroup;
 
 	internal void PickOne() {
-		Assert.IsTrue(--jujubeCount >= 0, "Jujube count for this group goes to negative");
+		if (jujubeCount-- == previousCount) {
+			jujubeBoard.MakeOtherGroupsNotInteractable(canvasGroup);
+		}
+
+		Assert.IsTrue(jujubeCount >= 0, "Jujube count for this group goes to negative");
 	}
 
-	internal void ReturnOne() {
-		Assert.IsTrue(++jujubeCount <= maxJujubeCountForGroup, "Jujube count for this group exceeded its max");
-	}
+	internal void UnpickOne() {
+		if (++jujubeCount == previousCount) {
+			jujubeBoard.MakeAllGroupsInteractable();
+		}
 
-  internal bool NotPickedInThisTurn() {
-		return jujubeCount == previousCount;
+		Assert.IsTrue(jujubeCount <= maxForGroup, "Jujube count for this group exceeded its max");
 	}
 
 	void Awake() {
-		for (jujubeCount = 0; jujubeCount < maxJujubeCountForGroup; ++jujubeCount) {
+		jujubeBoard = GetComponentInParent<JujubeBoard>();
+		canvasGroup = GetComponent<CanvasGroup>();
+
+		for (jujubeCount = 0; jujubeCount < maxForGroup; ++jujubeCount) {
 			Instantiate(JujubePrefab, transform);
 		}
-		previousCount = jujubeCount;
+		// previousCount = jujubeCount;
 	}
 }
