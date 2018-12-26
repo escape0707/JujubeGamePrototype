@@ -6,7 +6,7 @@ public class JujubeToggle : MonoBehaviour {
 	private JujubeGroup group;
 
 	void Awake() {
-		group = GetComponentInParent<JujubeGroup>();
+		group = GetComponentInParent<JujubeGroup>(); // Interesting.. I shouldn't get notified but ask for everything I should know by myself instead?
 		
 		toggle = GetComponent<Toggle>();
 		toggle.onValueChanged.AddListener(delegate {

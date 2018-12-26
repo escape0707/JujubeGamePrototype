@@ -6,11 +6,18 @@ public class JujubeGroup : MonoBehaviour {
 	private GameObject JujubePrefab;
 
 	[SerializeField]
-	private int maxForGroup; // TODO
+	private int maxForGroup;
 	private int jujubeCount;
 	private int previousCount; // TODO!! Not maintained.
 	private JujubeBoard jujubeBoard;
 	private CanvasGroup canvasGroup;
+
+	// Interesting.. I choosed to let others tell me the info here.
+	internal int MaxForGroup {
+		set {
+			maxForGroup = value;
+		}
+	}
 
 	internal void PickOne() {
 		if (jujubeCount-- == previousCount) {
@@ -32,9 +39,9 @@ public class JujubeGroup : MonoBehaviour {
 		jujubeBoard = GetComponentInParent<JujubeBoard>();
 		canvasGroup = GetComponent<CanvasGroup>();
 
+		// to Instantiate() in Awake() requires assigning to maxForGroup immediately after the instantiation of this GameObject.
 		for (jujubeCount = 0; jujubeCount < maxForGroup; ++jujubeCount) {
 			Instantiate(JujubePrefab, transform);
 		}
-		// previousCount = jujubeCount;
 	}
 }
