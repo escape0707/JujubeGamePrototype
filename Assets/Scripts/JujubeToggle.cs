@@ -1,34 +1,24 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class JujubeToggle : MonoBehaviour {
-	private Toggle jujubeToggle;
-	private JujubeGroup groupController;
+	private Toggle toggle;
+	private JujubeGroup group;
 
 	void Awake() {
-		jujubeToggle = GetComponent<Toggle>();
-		jujubeToggle.onValueChanged.AddListener(delegate {
-			ToggleValueChanged(jujubeToggle);
+		group = GetComponentInParent<JujubeGroup>();
+		
+		toggle = GetComponent<Toggle>();
+		toggle.onValueChanged.AddListener(delegate {
+			ToggleValueChanged(toggle);
 		});
-
-		groupController = GetComponentInParent<JujubeGroup>();
 	}
 
 	void ToggleValueChanged(Toggle changedToggle) {
 		if (changedToggle.isOn) {
-			groupController.ReturnOne();
-			if (groupController.NotPickedInThisTurn()){
-				groupController.MakeAllGroupsInteractable();
-			}
+			group.UnpickOne();
 		} else {
-			groupController.PickOne();
-			MakeOtherGroupsNotInteractable();
+			group.PickOne();
 		}
 	}
-
-  private void MakeOtherGroupsNotInteractable()
-  {
-    throw new NotImplementedException();
-  }
 }
