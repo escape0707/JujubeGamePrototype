@@ -37,8 +37,10 @@ public class JujubeGroup : MonoBehaviour {
 	void Awake() {
 		jujubeBoard = GetComponentInParent<JujubeBoard>();
 		canvasGroup = GetComponent<CanvasGroup>();
+	}
 
-		// to Instantiate() in Awake() requires assigning to maxForGroup immediately after the instantiation of this GameObject.
+	void Start() {
+		// Interesting.. Tried to Instantiate() in Awake(). But maxForGroup is not assigned at that phase. But I have done that immediately after the instantiation of this GameObject?
 		for (jujubeCount = 0; jujubeCount < maxForGroup; ++jujubeCount) {
 			Instantiate(JujubePrefab, transform);
 		}
