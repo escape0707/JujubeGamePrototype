@@ -53,7 +53,7 @@ public class JujubeBoard : MonoBehaviour {
 		foreach (int max in maxCountForGroups) {
 			GameObject child = Instantiate(groupPrefab, transform);
 			allCanvasGroups.Add(child.GetComponent<CanvasGroup>());
-
+			
 			JujubeGroup childScript = child.GetComponent<JujubeGroup>();
 			allJujubeGroups.Add(childScript);
 			childScript.MaxForGroup = max;

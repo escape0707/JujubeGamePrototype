@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour {
 		playerTurn.jujubeBoard = jujubeBoard;
 	}
 
-	public void Validate() {
+	internal void Validate() {
 		if (jujubeBoard.CheckGameOver()) {
 			gameOverText.SetActive(true);
 			animator.SetTrigger("GameOver");
