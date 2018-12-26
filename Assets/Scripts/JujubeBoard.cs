@@ -5,6 +5,7 @@ public class JujubeBoard : MonoBehaviour {
 	[SerializeField]
 	private GameObject groupPrefab;
 
+	[SerializeField] // Warning: can be changed in Unity Editor
 	private int[] maxCountForGroups = { 3, 5, 7 }; // According to game basic rules
 
 	private List<CanvasGroup> allCanvasGroups = new List<CanvasGroup>();

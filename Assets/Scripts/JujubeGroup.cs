@@ -5,7 +5,6 @@ public class JujubeGroup : MonoBehaviour {
 	[SerializeField]
 	private GameObject JujubePrefab;
 
-	[SerializeField]
 	private int maxForGroup;
 	private int jujubeCount;
 	private int previousCount; // TODO!! Not maintained.
