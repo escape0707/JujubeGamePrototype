@@ -14,7 +14,8 @@ public class AIPlayer : MonoBehaviour {
 
 	internal void OnAITurnEnter() {
 		List<int> jujubeCounts = jujubeBoard.GetJujubeCounts();
-		jujubeBoard.MakeMove(move[jujubeCounts[0], jujubeCounts[1], jujubeCounts[2]]);
+    int[] movement = move[jujubeCounts[0], jujubeCounts[1], jujubeCounts[2]];
+    jujubeBoard.MakeMove(movement[0], movement[1]);
 	}
 
 	private void FindAnswer(int first, int second, int third) { // 'c' for "counts".

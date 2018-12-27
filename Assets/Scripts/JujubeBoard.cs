@@ -11,8 +11,8 @@ public class JujubeBoard : MonoBehaviour {
 	private List<CanvasGroup> allCanvasGroups = new List<CanvasGroup>();
 	private List<JujubeGroup> allJujubeGroups = new List<JujubeGroup>();
 
-	internal void MakeMove(int[] move) {
-		allJujubeGroups[move[0]].MoveSome(move[1]);
+	internal void MakeMove(int groupIndex, int moveAmount) {
+		allJujubeGroups[groupIndex].MoveSome(moveAmount);
 	}
 
 	internal List<int> GetJujubeCounts() {
