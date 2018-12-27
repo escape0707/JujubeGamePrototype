@@ -26,6 +26,12 @@ public class JujubeGroup : MonoBehaviour {
 		}
 	}
 
+	internal int JujubeCount {
+		get {
+			return jujubeCount;
+		}
+	}
+
 	private void CleanUpJujubes() {
 		for (int count = 0; count < maxForGroup; ++count) {
 			bool isRemained = count < jujubeCount;
@@ -49,6 +55,13 @@ public class JujubeGroup : MonoBehaviour {
 		}
 
 		Assert.IsTrue(jujubeCount >= 0, "Jujube count for this group goes to negative");
+	}
+
+	internal void MoveSome(int moveAmount) {
+		jujubeCount += moveAmount;
+		Assert.IsTrue(jujubeCount >= 0, "Jujube count for this group goes to negative");
+		Assert.IsTrue(jujubeCount <= maxForGroup, "Jujube count for this group exceeded its max");
+		CleanUpJujubes();
 	}
 
 	internal void UnpickOne() {

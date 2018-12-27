@@ -7,8 +7,4 @@ public class AITurn : StateMachineBehaviour {
 		aIPlayer.OnAITurnEnter();
 		animator.SetTrigger("AIMovedTrigger");
 	}
-
-	override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-		aIPlayer.OnAITurnExit();
-	}
 }

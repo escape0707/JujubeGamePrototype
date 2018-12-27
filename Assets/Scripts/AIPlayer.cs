@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class AIPlayer : MonoBehaviour {
@@ -12,12 +13,8 @@ public class AIPlayer : MonoBehaviour {
 	}
 
 	internal void OnAITurnEnter() {
-		Debug.Log("AITurnEnter");
-		// MakeAMove();
-	}
-
-	internal void OnAITurnExit() {
-		Debug.Log("AITurnExit");
+		List<int> jujubeCounts = jujubeBoard.GetJujubeCounts();
+		jujubeBoard.MakeMove(move[jujubeCounts[0], jujubeCounts[1], jujubeCounts[2]]);
 	}
 
 	private void FindAnswer(int first, int second, int third) { // 'c' for "counts".
